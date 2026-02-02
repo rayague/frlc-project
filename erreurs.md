@@ -21,19 +21,17 @@ While evaluating the form starting at line 7, column 0
   of #P"D:/CORSE/semestre2/frlc-project/frlc-system/frlc.lisp":
 
 debugger invoked on a SB-C::INPUT-ERROR-IN-LOAD in thread
-#<THREAD tid=656 "main thread" RUNNING {1100030003}>:
+#<THREAD tid=932 "main thread" RUNNING {1100030003}>:
   READ error during LOAD:
 
-    unmatched close parenthesis
+    end of file on #<SB-INT:FORM-TRACKING-STREAM for "file D:\\CORSE\\semestre2\\frlc-project\\frlc-system\\inheritance.lisp" {11013F7D83}>
 
-      Line: 27, Column: 35, File-Position: 1002
-
-      Stream: #<SB-INT:FORM-TRACKING-STREAM for "file D:\\CORSE\\semestre2\\frlc-project\\frlc-system\\interface.lisp" {110123E723}>
+    (in form starting at line: 8, column: 0, position: 211)
 
 Type HELP for debugger help, or (SB-EXT:EXIT) to exit from SBCL.
 
 restarts (invokable by number or by possibly-abbreviated name):
-  0: [ABORT   ] Abort loading file "D:\\CORSE\\semestre2\\frlc-project\\frlc-system\\interface.lisp".
+  0: [ABORT   ] Abort loading file "D:\\CORSE\\semestre2\\frlc-project\\frlc-system\\inheritance.lisp".
   1: [RETRY   ] Retry EVAL of current toplevel form.
   2: [CONTINUE] Ignore error and continue loading file "D:\\CORSE\\semestre2\\frlc-project\\frlc-system\\frlc.lisp".
   3:            Abort loading file "D:\\CORSE\\semestre2\\frlc-project\\frlc-system\\frlc.lisp".
@@ -42,5 +40,5 @@ restarts (invokable by number or by possibly-abbreviated name):
   6:            Skip to toplevel READ/EVAL/PRINT loop.
   7: [EXIT    ] Exit SBCL (calling #'EXIT, killing the process).
 
-(SB-C:COMPILER-ERROR SB-C::INPUT-ERROR-IN-LOAD :CONDITION #<SB-INT:SIMPLE-READER-ERROR "unmatched close parenthesis" {1101371853}> :STREAM #<SB-INT:FORM-TRACKING-STREAM for "file D:\\CORSE\\semestre2\\frlc-project\\frlc-system\\interface.lisp" {110123E723}>)
+(SB-C:COMPILER-ERROR SB-C::INPUT-ERROR-IN-LOAD :CONDITION #<END-OF-FILE {1101426A83}> :POSITION 211 :LINE/COL (8 . 0) :STREAM #<SB-INT:FORM-TRACKING-STREAM for "file D:\\CORSE\\semestre2\\frlc-project\\frlc-system\\inheritance.lisp" {11013F7D83}>)       
 0]
