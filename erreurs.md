@@ -1,22 +1,91 @@
 PS D:\CORSE\semestre2\frlc-project> .\run-frlc-tests.ps1
 Running FRLC tests with sbcl...
 
-; file: D:/CORSE/semestre2/frlc-project/frlc-system/core-functions.lisp
-; in: DEFUN FREMOVE => DEFUN CALL-DEMONS => DEFUN FINST
-;     (FRLC::FSLOTS FRLC::ANCESTOR)
+; file: D:/CORSE/semestre2/frlc-project/frlc-system/interface.lisp
+; in: DEFUN FSLOTS
+;     (FRLC::GET-FRAME FRLC::FRAME)
 ;
 ; caught STYLE-WARNING:
-;   undefined function: FRLC::FSLOTS
+;   undefined function: FRLC::GET-FRAME
+;
+; compilation unit finished
+;   Undefined function:
+;     GET-FRAME
+;   caught 1 STYLE-WARNING condition
 
-;     (FRLC::INHERITANCE-LEVELS FRLC::INSTANCE)
+; file: D:/CORSE/semestre2/frlc-project/frlc-system/interface.lisp
+; in: DEFUN FFACETS
+;     (FRLC::FIND-SLOT-PAIR (FRLC::GET-FRAME FRLC::FRAME) FRLC::SLOT)
 ;
 ; caught STYLE-WARNING:
-;   undefined function: FRLC::INHERITANCE-LEVELS
+;   undefined function: FRLC::FIND-SLOT-PAIR
+
+;     (FRLC::GET-FRAME FRLC::FRAME)
+;
+; caught STYLE-WARNING:
+;   undefined function: FRLC::GET-FRAME
 ;
 ; compilation unit finished
 ;   Undefined functions:
-;     FSLOTS INHERITANCE-LEVELS
+;     FIND-SLOT-PAIR GET-FRAME
 ;   caught 2 STYLE-WARNING conditions
+
+; file: D:/CORSE/semestre2/frlc-project/frlc-system/interface.lisp
+; in: DEFUN FCHILDREN
+;     (LAMBDA (FRLC::K FRLC::V)
+;       (WHEN
+;           (FIND FRLC::PARENT (FRLC::FGET FRLC::K 'FRLC::AKO 'FRLC::VALUE) :TEST
+;                 #'EQUAL)
+;         (PUSH FRLC::K FRLC::OUT)))
+;
+; caught STYLE-WARNING:
+;   The variable V is defined but never used.
+
+; file: D:/CORSE/semestre2/frlc-project/frlc-system/interface.lisp
+; in: DEFUN FCHILDREN
+;     (FRLC::FGET FRLC::K 'FRLC::AKO 'FRLC::VALUE)
+;
+; caught STYLE-WARNING:
+;   undefined function: FRLC::FGET
+;
+; compilation unit finished
+;   Undefined function:
+;     FGET
+;   caught 2 STYLE-WARNING conditions
+
+; file: D:/CORSE/semestre2/frlc-project/frlc-system/interface.lisp
+; in: DEFUN FWRITEFRAME
+;     (DEFUN FRLC::FWRITEFRAME (FRLC::FRAME &OPTIONAL STREAM)
+;       "Écrit la structure du FRAME sur STREAM (par défaut *standard-output*)."
+;       (WITH-OUTPUT-TO-STRING (FRLC::S)
+;         (PPRINT (FRLC::GET-FRAME FRLC::FRAME) FRLC::S)))
+;
+; caught STYLE-WARNING:
+;   The variable STREAM is defined but never used.
+
+; file: D:/CORSE/semestre2/frlc-project/frlc-system/interface.lisp
+; in: DEFUN FWRITEFRAME
+;     (FRLC::GET-FRAME FRLC::FRAME)
+;
+; caught STYLE-WARNING:
+;   undefined function: FRLC::GET-FRAME
+;
+; compilation unit finished
+;   Undefined function:
+;     GET-FRAME
+;   caught 2 STYLE-WARNING conditions
+
+; file: D:/CORSE/semestre2/frlc-project/frlc-system/inheritance.lisp
+; in: DEFUN PARENTS-OF
+;     (FRLC::FGET FRLC::FRAME 'FRLC::AKO 'FRLC::VALUE)
+;
+; caught STYLE-WARNING:
+;   undefined function: FRLC::FGET
+;
+; compilation unit finished
+;   Undefined function:
+;     FGET
+;   caught 1 STYLE-WARNING condition
 
 ; file: D:/CORSE/semestre2/frlc-project/frlc-system/inheritance.lisp
 ; in: DEFUN FGET-I
@@ -53,7 +122,7 @@ Running FRLC tests with sbcl...
 ;                (FRLC::DFS FRLC::FRAME NIL)))
 ;       (DEFUN FRLC::FGET-N (FRLC::FRAME FRLC::SLOT)
 ;         "Recherche depth-first value -> defaut -> if-needed (profondeur).
-;   Si if-needed donne une valeur, retourne cette valeur (et ne la met pas automatiquement)."
+;   Si if-needed donne une valeur, retourne cette valeur (et ne la met pas automatiquement)."  
 ;         (OR (FRLC::FGET-I FRLC::FRAME FRLC::SLOT 'FRLC::VALUE)
 ;             (FRLC::FGET-I FRLC::FRAME FRLC::SLOT 'FRLC::DEFAUT)
 ;             (LET (#)
@@ -86,6 +155,12 @@ Running FRLC tests with sbcl...
 ; caught STYLE-WARNING:
 ;   undefined function: FRLC::CALL-DEMONS
 
+; in: DEFUN FGET-I
+;     (FRLC::FGET FRLC::F FRLC::SLOT FRLC::FACET)
+;
+; caught STYLE-WARNING:
+;   undefined function: FRLC::FGET
+
 ; in: DEFUN FGET-I => DEFUN FGETCLASSES => DEFUN INHERITANCE-LEVELS
 ;     (FRLC::WHILE FRLC::CURRENT (PUSH FRLC::CURRENT FRLC::LEVELS)
 ;      (LET ((FRLC::NEXT 'NIL))
@@ -97,10 +172,22 @@ Running FRLC tests with sbcl...
 ;
 ; compilation unit finished
 ;   Undefined functions:
-;     CALL-DEMONS WHILE
+;     CALL-DEMONS FGET WHILE
 ;   caught 1 ERROR condition
 ;   caught 1 WARNING condition
-;   caught 3 STYLE-WARNING conditions
+;   caught 4 STYLE-WARNING conditions
+
+; file: D:/CORSE/semestre2/frlc-project/frlc-system/core-functions.lisp
+; in: DEFUN FREMOVE => DEFUN CALL-DEMONS => DEFUN FINST
+;     (FRLC::INHERITANCE-LEVELS FRLC::INSTANCE)
+;
+; caught STYLE-WARNING:
+;   undefined function: FRLC::INHERITANCE-LEVELS
+;
+; compilation unit finished
+;   Undefined function:
+;     INHERITANCE-LEVELS
+;   caught 1 STYLE-WARNING condition
 
 ; file: D:/CORSE/semestre2/frlc-project/frlc-system/demons.lisp
 ; in: DEFUN FAKO?
@@ -112,33 +199,6 @@ Running FRLC tests with sbcl...
 ; compilation unit finished
 ;   Undefined function:
 ;     FGETCLASSES
-;   caught 1 STYLE-WARNING condition
-
-; file: D:/CORSE/semestre2/frlc-project/frlc-system/interface.lisp
-; in: DEFUN FCHILDREN
-;     (LAMBDA (FRLC::K FRLC::V)
-;       (WHEN
-;           (FIND FRLC::PARENT (FRLC::FGET FRLC::K 'FRLC::AKO 'FRLC::VALUE) :TEST
-;                 #'EQUAL)
-;         (PUSH FRLC::K FRLC::OUT)))
-;
-; caught STYLE-WARNING:
-;   The variable V is defined but never used.
-;
-; compilation unit finished
-;   caught 1 STYLE-WARNING condition
-
-; file: D:/CORSE/semestre2/frlc-project/frlc-system/interface.lisp
-; in: DEFUN FWRITEFRAME
-;     (DEFUN FRLC::FWRITEFRAME (FRLC::FRAME &OPTIONAL STREAM)
-;       "Écrit la structure du FRAME sur STREAM (par défaut *standard-output*)."
-;       (WITH-OUTPUT-TO-STRING (FRLC::S)
-;         (PPRINT (FRLC::GET-FRAME FRLC::FRAME) FRLC::S)))
-;
-; caught STYLE-WARNING:
-;   The variable STREAM is defined but never used.
-;
-; compilation unit finished
 ;   caught 1 STYLE-WARNING condition
 
 ; file: D:/CORSE/semestre2/frlc-project/frlc-system/tribal-world.lisp
@@ -178,17 +238,20 @@ Running FRLC tests with sbcl...
 ;   caught 1 STYLE-WARNING condition
 FRLC initialized. Root frame 'Objet' created.
 
-debugger invoked on a END-OF-FILE in thread
-#<THREAD tid=4684 "main thread" RUNNING {1100030003}>:
-  end of file on #<dynamic-extent STRING-INPUT-STREAM (unavailable) from "(load \" ...">
+debugger invoked on a UNBOUND-VARIABLE @10006DF0D9 in thread
+#<THREAD tid=14800 "main thread" RUNNING {1100030003}>:
+  The variable FRLC-SYSTEM/TESTS.LISP is unbound.
 
 Type HELP for debugger help, or (SB-EXT:EXIT) to exit from SBCL.
 
 restarts (invokable by number or by possibly-abbreviated name):
-  0: [CONTINUE] Ignore runtime option --eval "(load \" frlc-system/tests.lisp\\) --eval (run-tests) --quit".
-  1: [ABORT   ] Skip rest of --eval and --load options.
-  2:            Skip to toplevel READ/EVAL/PRINT loop.
-  3: [EXIT    ] Exit SBCL (calling #'EXIT, killing the process).
+  0: [CONTINUE   ] Retry using FRLC-SYSTEM/TESTS.LISP.
+  1: [USE-VALUE  ] Use specified value.
+  2: [STORE-VALUE] Set specified value and use it.
+  3:               Ignore runtime option --eval "(load frlc-system/tests.lisp)".
+  4: [ABORT      ] Skip rest of --eval and --load options.
+  5:               Skip to toplevel READ/EVAL/PRINT loop.
+  6: [EXIT       ] Exit SBCL (calling #'EXIT, killing the process).
 
-((FLET SB-IMPL::BASE-CHAR-IN :IN SB-IMPL::%INIT-STRING-INPUT-STREAM) #<SB-IMPL::STRING-INPUT-STREAM {5FF4B3}> T NIL)
+(SB-INT:SIMPLE-EVAL-IN-LEXENV FRLC-SYSTEM/TESTS.LISP #<NULL-LEXENV>)
 0]
