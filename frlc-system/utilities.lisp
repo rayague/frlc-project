@@ -17,7 +17,7 @@
     (if pair
         (setf (cdr pair) value)
         (push (cons key value) alist))
-    alist)
+    alist))
 
 (defun list-unique (lst &key (test #'equal))
   "Retourne une nouvelle liste avec éléments uniques en gardant l'ordre." 
