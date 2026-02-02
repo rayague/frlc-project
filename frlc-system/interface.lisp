@@ -24,7 +24,7 @@
   "Écrit la structure du FRAME sur STREAM (par défaut *standard-output*)." 
   (declare (ignore stream)) ; ignore stream for now, always return string
   (with-output-to-string (s)
-    (pprint (get-frame frame) s))))
+    (pprint (get-frame frame) s)))
 
 (defun Fmenu ()
   (format t "Fmenu: menu interactif non-implémenté (utiliser le REPL).~%"))
