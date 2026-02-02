@@ -22,3 +22,5 @@
         (set-frame (car pair) (cdr pair))))))
 
 ;;; Fin persistence.lisp
+
+)

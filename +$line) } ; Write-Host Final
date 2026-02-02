@@ -1,0 +1,19 @@
+At line:1 char:314
++ ... ).Count; $bal+=$opens-$closes; Write-Host ('L'+([int]($i+1))+: bal=+$ ...
++                                                                  ~
+You must provide a value expression following the '+' operator.
+At line:1 char:314
++ ... .Count; $bal+=$opens-$closes; Write-Host ('L'+([int]($i+1))+: bal=+$b ...
++                                                                 ~
+Unexpected token ':' in expression or statement.
+At line:1 char:314
++ ... ).Count; $bal+=$opens-$closes; Write-Host ('L'+([int]($i+1))+: bal=+$ ...
++                                                                  ~
+Missing closing ')' in expression.
+At line:1 char:119
++ ... nheritance.lisp'; $bal=0; for($i=0;$i -lt $lines.Count;$i++){ $line=$ ...
++                                                                 ~
+Missing closing '}' in statement block or type definition.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : ExpectedValueExpression
+ 

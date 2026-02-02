@@ -95,3 +95,7 @@ Retourne la première liste/valeur trouvée."
     (nreverse levels)))
 
 ;;; Fin inheritance.lisp
+
+)
+)
+
