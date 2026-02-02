@@ -148,7 +148,5 @@ Retourne le nom de l'instance."
                     ;; if demon returns a value, set it on instance
                     (Fput+ instance s 'value r)))))))))
     instance))
-  )
-  )
 
-  ;;; Fin core-functions.lisp
+;;; Fin core-functions.lisp
