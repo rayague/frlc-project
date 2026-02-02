@@ -1,22 +1,37 @@
-
-
 PS D:\CORSE\semestre2\frlc-project> .\run-frlc-tests.ps1
 Running FRLC tests with sbcl...
+
+; file: D:/CORSE/semestre2/frlc-project/frlc-system/core-functions.lisp
+; in: DEFUN FREMOVE => DEFUN CALL-DEMONS => DEFUN FINST
+;     (FRLC::FSLOTS FRLC::ANCESTOR)
+;
+; caught STYLE-WARNING:
+;   undefined function: FRLC::FSLOTS
+
+;     (FRLC::INHERITANCE-LEVELS FRLC::INSTANCE)
+;
+; caught STYLE-WARNING:
+;   undefined function: FRLC::INHERITANCE-LEVELS
+;
+; compilation unit finished
+;   Undefined functions:
+;     FSLOTS INHERITANCE-LEVELS
+;   caught 2 STYLE-WARNING conditions
 While evaluating the form starting at line 5, column 0
   of #P"D:/CORSE/semestre2/frlc-project/frlc-system/frlc.lisp":
 
 debugger invoked on a SB-C::INPUT-ERROR-IN-LOAD in thread
-#<THREAD tid=6964 "main thread" RUNNING {1100030003}>:
+#<THREAD tid=3652 "main thread" RUNNING {1100030003}>:
   READ error during LOAD:
 
-    end of file on #<SB-INT:FORM-TRACKING-STREAM for "file D:\\CORSE\\semestre2\\frlc-project\\frlc-system\\core-functions.lisp" {1100EAD503}>
+    end of file on #<SB-INT:FORM-TRACKING-STREAM for "file D:\\CORSE\\semestre2\\frlc-project\\frlc-system\\inheritance.lisp" {110123E793}>
 
-    (in form starting at line: 76, column: 0, position: 2690)
+    (in form starting at line: 8, column: 0, position: 211)
 
 Type HELP for debugger help, or (SB-EXT:EXIT) to exit from SBCL.
 
 restarts (invokable by number or by possibly-abbreviated name):
-  0: [ABORT   ] Abort loading file "D:\\CORSE\\semestre2\\frlc-project\\frlc-system\\core-functions.lisp".
+  0: [ABORT   ] Abort loading file "D:\\CORSE\\semestre2\\frlc-project\\frlc-system\\inheritance.lisp".
   1: [RETRY   ] Retry EVAL of current toplevel form.
   2: [CONTINUE] Ignore error and continue loading file "D:\\CORSE\\semestre2\\frlc-project\\frlc-system\\frlc.lisp".
   3:            Abort loading file "D:\\CORSE\\semestre2\\frlc-project\\frlc-system\\frlc.lisp".
@@ -25,5 +40,5 @@ restarts (invokable by number or by possibly-abbreviated name):
   6:            Skip to toplevel READ/EVAL/PRINT loop.
   7: [EXIT    ] Exit SBCL (calling #'EXIT, killing the process).
 
-(SB-C:COMPILER-ERROR SB-C::INPUT-ERROR-IN-LOAD :CONDITION #<END-OF-FILE {11010795A3}> :POSITION 2690 :LINE/COL (76 . 0) :STREAM #<SB-INT:FORM-TRACKING-STREAM for "file D:\\CORSE\\semestre2\\frlc-project\\frlc-system\\core-functions.lisp" {1100EAD503}>)  
+(SB-C:COMPILER-ERROR SB-C::INPUT-ERROR-IN-LOAD :CONDITION #<END-OF-FILE {110126D353}> :POSITION 211 :LINE/COL (8 . 0) :STREAM #<SB-INT:FORM-TRACKING-STREAM for "file D:\\CORSE\\semestre2\\frlc-project\\frlc-system\\inheritance.lisp" {110123E793}>)       
 0]
