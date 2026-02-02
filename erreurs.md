@@ -17,28 +17,131 @@ Running FRLC tests with sbcl...
 ;   Undefined functions:
 ;     FSLOTS INHERITANCE-LEVELS
 ;   caught 2 STYLE-WARNING conditions
-While evaluating the form starting at line 7, column 0
-  of #P"D:/CORSE/semestre2/frlc-project/frlc-system/frlc.lisp":
 
-debugger invoked on a SB-C::INPUT-ERROR-IN-LOAD in thread
-#<THREAD tid=932 "main thread" RUNNING {1100030003}>:
-  READ error during LOAD:
+; file: D:/CORSE/semestre2/frlc-project/frlc-system/inheritance.lisp
+; in: DEFUN FGET-I
+;     ((FRLC::DFS (FRLC::F FRLC::VISITED)
+;       (WHEN (AND FRLC::F (NOT #))
+;         (LET (#)
+;           (IF FRLC::RES
+;               FRLC::RES
+;               #))))
+;      (FRLC::DFS FRLC::FRAME NIL))
+;
+; caught WARNING:
+;   Duplicate definitions in ((DFS (F VISITED)
+;                              (WHEN (AND F (NOT (FIND F VISITED :TEST #'EQUAL)))
+;                                (LET ((RES (FGET F SLOT FACET)))
+;                                  (IF RES
+;                                      RES
+;                                      (LET ((PS (PARENTS-OF F)))
+;                                        (DOLIST (P PS)
+;                                          (LET ((R (DFS P (CONS F VISITED))))
+;                                            (WHEN R (RETURN R)))))))))
+;                             (DFS FRAME NIL))
 
-    end of file on #<SB-INT:FORM-TRACKING-STREAM for "file D:\\CORSE\\semestre2\\frlc-project\\frlc-system\\inheritance.lisp" {11013F7D83}>
+;     (FRLC::DFS FRLC::FRAME NIL)
+;
+; caught ERROR:
+;   The lambda expression has a missing or non-list lambda list:
+;     (LAMBDA FRAME (BLOCK DFS NIL))
 
-    (in form starting at line: 8, column: 0, position: 211)
+;     (DEFUN FRLC::FGET-I (FRLC::FRAME FRLC::SLOT FRLC::FACET)
+;       "Recherche profondeur d'abord: FRAME puis parents (AKO) gauche->droite.
+;   Retourne la première liste de valeurs trouvée (non-nil)."
+;       (LABELS ((FRLC::DFS (FRLC::F FRLC::VISITED) (WHEN # #))
+;                (FRLC::DFS FRLC::FRAME NIL)))
+;       (DEFUN FRLC::FGET-N (FRLC::FRAME FRLC::SLOT)
+;         "Recherche depth-first value -> defaut -> if-needed (profondeur).
+;   Si if-needed donne une valeur, retourne cette valeur (et ne la met pas automatiquement)."
+;         (OR (FRLC::FGET-I FRLC::FRAME FRLC::SLOT 'FRLC::VALUE)
+;             (FRLC::FGET-I FRLC::FRAME FRLC::SLOT 'FRLC::DEFAUT)
+;             (LET (#)
+;               (WHEN FRLC::RES #))))
+;       (DEFUN FRLC::FGET-Z (FRLC::FRAME FRLC::SLOT)
+;         "Recherche largeur d'abord; à chaque niveau: value, defaut, if-needed.
+;   Retourne la première liste/valeur trouvée."
+;         (LET ((FRLC::SEEN #) (FRLC::LEVEL #))
+;           (LOOP FRLC::WHILE FRLC::LEVEL
+;                 DO (PROGN # # # #))))
+;       (DEFUN FRLC::FGETCLASSES (FRLC::FRAME)
+;         "Liste des ascendants (AKO) sans doublon, profondeur-first order."
+;         (LET ((FRLC::OUT 'NIL) (FRLC::SEEN 'NIL))
+;           (LABELS (#)
+;             (FRLC::DFS FRLC::FRAME)
+;             (NREVERSE FRLC::OUT)))
+;         (DEFUN FRLC::INHERITANCE-LEVELS (FRLC::FRAME)
+;           "Retourne une liste de niveaux (listes) pour BFS: [[frame], [parents...], [parents-parents...]]"
+;           (LET (# # #)
+;             (LOOP FRLC::WHILE FRLC::CURRENT
+;                   DO #)
+;             (NREVERSE FRLC::LEVELS)))))
+;
+; caught STYLE-WARNING:
+;   The variable FRAME is defined but never used.
+
+; file: D:/CORSE/semestre2/frlc-project/frlc-system/inheritance.lisp
+; in: DEFUN FGET-I => DEFUN FGET-Z
+;     (FRLC::CALL-DEMONS FRLC::F FRLC::SLOT 'FRLC::IF-NEEDED)
+;
+; caught STYLE-WARNING:
+;   undefined function: FRLC::CALL-DEMONS
+;
+; compilation unit finished
+;   Undefined function:
+;     CALL-DEMONS
+;   caught 1 ERROR condition
+;   caught 1 WARNING condition
+;   caught 2 STYLE-WARNING conditions
+
+; file: D:/CORSE/semestre2/frlc-project/frlc-system/demons.lisp
+; in: DEFUN FAKO?
+;     (FRLC::FGETCLASSES FRLC::A)
+;
+; caught STYLE-WARNING:
+;   undefined function: FRLC::FGETCLASSES
+;
+; compilation unit finished
+;   Undefined function:
+;     FGETCLASSES
+;   caught 1 STYLE-WARNING condition
+
+; file: D:/CORSE/semestre2/frlc-project/frlc-system/tribal-world.lisp
+; in: DEFUN SETUP-TRIBAL
+;     (FRLC::FCREATE 'FRLC::OBJET 'FRLC::PERSONNE 'FRLC::PROTOTYPE)
+;
+; caught STYLE-WARNING:
+;   undefined function: FRLC::FCREATE
+;
+; compilation unit finished
+;   Undefined function:
+;     FCREATE
+;   caught 1 STYLE-WARNING condition
+
+; file: D:/CORSE/semestre2/frlc-project/frlc-system/tribal-world.lisp
+; in: DEFUN TRIBAL-CREATE-CHILD
+;     (FRLC::FPUT+ FRLC::MOTHER 'FRLC::ENFANTS 'FRLC::VALUE FRLC::CHILD-NAME)
+;
+; caught STYLE-WARNING:
+;   undefined function: FRLC::FPUT+
+;
+; compilation unit finished
+;   Undefined function:
+;     FPUT+
+;   caught 1 STYLE-WARNING condition
+FRLC initialized. Root frame 'Objet' created.
+
+debugger invoked on a END-OF-FILE in thread
+#<THREAD tid=15900 "main thread" RUNNING {1100030003}>:
+  end of file on #<dynamic-extent STRING-INPUT-STREAM (unavailable) from "(load \" ...">
 
 Type HELP for debugger help, or (SB-EXT:EXIT) to exit from SBCL.
 
 restarts (invokable by number or by possibly-abbreviated name):
-  0: [ABORT   ] Abort loading file "D:\\CORSE\\semestre2\\frlc-project\\frlc-system\\inheritance.lisp".
-  1: [RETRY   ] Retry EVAL of current toplevel form.
-  2: [CONTINUE] Ignore error and continue loading file "D:\\CORSE\\semestre2\\frlc-project\\frlc-system\\frlc.lisp".
-  3:            Abort loading file "D:\\CORSE\\semestre2\\frlc-project\\frlc-system\\frlc.lisp".
-  4:            Ignore runtime option --load "frlc-system/frlc.lisp".
-  5:            Skip rest of --eval and --load options.
-  6:            Skip to toplevel READ/EVAL/PRINT loop.
-  7: [EXIT    ] Exit SBCL (calling #'EXIT, killing the process).
+  0: [CONTINUE] Ignore runtime option --eval "(load \" frlc-system/tests.lisp\\) --eval (run-tests) --quit".
+  1: [ABORT   ] Skip rest of --eval and --load options.
+  2:            Skip to toplevel READ/EVAL/PRINT loop.
+  3: [EXIT    ] Exit SBCL (calling #'EXIT, killing the process).
 
-(SB-C:COMPILER-ERROR SB-C::INPUT-ERROR-IN-LOAD :CONDITION #<END-OF-FILE {1101426A83}> :POSITION 211 :LINE/COL (8 . 0) :STREAM #<SB-INT:FORM-TRACKING-STREAM for "file D:\\CORSE\\semestre2\\frlc-project\\frlc-system\\inheritance.lisp" {11013F7D83}>)       
+((FLET SB-IMPL::BASE-CHAR-IN :IN SB-IMPL::%INIT-STRING-INPUT-STREAM) #<SB-IMPL::STRING-INPUT-STREAM {5FF4B3}> T NIL)
 0]
