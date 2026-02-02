@@ -11,17 +11,7 @@ if (-not $sbcl) {
 if ($PSScriptRoot) { Set-Location $PSScriptRoot }
 
 Write-Host "Running FRLC tests with sbcl..."
-$sbclPath = $sbcl.Path
-$sbclArgs = @(
-    '--noinform',
-    '--load', 'frlc-system/frlc.lisp',
-    '--eval', '(in-package :frlc)',
-    '--eval', '(initialize-frlc)',
-    '--eval', '(load "frlc-system/tests.lisp")',
-    '--eval', '(run-tests)',
-    '--quit'
-)
-& $sbclPath @sbclArgs
+& sbcl --noinform --load frlc-system/frlc.lisp --eval "(in-package :frlc)" --eval "(initialize-frlc)" --eval "(load \"frlc-system/tests.lisp\")" --eval "(run-tests)" --quit
 
 if ($LASTEXITCODE -ne 0) { Write-Error "SBCL exited with code $LASTEXITCODE" }
 else { Write-Host "FRLC tests finished." }

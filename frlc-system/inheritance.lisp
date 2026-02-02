@@ -83,19 +83,17 @@ Retourne la première liste/valeur trouvée."
   (let ((seen (list frame))
         (current (list frame))
         (levels '()))
-    (while current
-      (push current levels)
-      (let ((next '()))
-        (dolist (f current)
-          (dolist (p (parents-of f))
-            (unless (find p seen :test #'equal)
-              (push p next)
-              (push p seen))))
-        (setf current (nreverse next))))
+    (loop while current
+          do (progn
+               (push current levels)
+               (let ((next '()))
+                 (dolist (f current)
+                   (dolist (p (parents-of f))
+                     (unless (find p seen :test #'equal)
+                       (push p next)
+                       (push p seen))))
+                 (setf current (nreverse next)))))
     (nreverse levels)))
 
 ;;; Fin inheritance.lisp
-
-)
-)
 
