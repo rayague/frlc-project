@@ -97,3 +97,5 @@ Retourne la première liste/valeur trouvée."
 
 ;;; Fin inheritance.lisp
 
+)
+)
