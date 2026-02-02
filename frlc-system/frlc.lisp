@@ -2,10 +2,12 @@
 (load #P"frlc-system/package.lisp")
 (in-package :frlc)
 
+;; Charger modules dans un ordre qui évite les warnings d'undefined functions
+;; (définitions utilitaires et interfaces avant le noyau qui les utilise)
 (mapc (lambda (f) (load (format nil "frlc-system/~A" f)))
       '("globals.lisp" "data-structures.lisp" "utilities.lisp"
-        "core-functions.lisp" "inheritance.lisp" "demons.lisp"
-        "interface.lisp" "persistence.lisp" "tribal-world.lisp"))
+        "interface.lisp" "inheritance.lisp" "core-functions.lisp"
+        "demons.lisp" "persistence.lisp" "tribal-world.lisp"))
 
 (defun initialize-frlc ()
   "Initialise le système FRLC: vide tables, créé Objet, initialise variables." 
