@@ -36,6 +36,38 @@
     (assert (= res 1000)))
   (format t "✓ Test4: Fget-N OK~%")
 
+  (initialize-frlc)
+  (Fcreate 'Objet 'A)
+  (Fcreate 'Objet 'B)
+  (Fput 'A 'x 'defaut 1)
+  (Fput 'B 'x 'defaut 2)
+  (Fcreate (list 'A 'B) 'C)
+  (assert (equal (Fget-I 'C 'x 'defaut) '(1)))
+  (format t "✓ Test5: heritage multiple OK~%")
+
+  (initialize-frlc)
+  (Fcreate 'Objet 'CycleA)
+  (Fcreate 'CycleA 'CycleB)
+  (Fput 'CycleA 'AKO 'value 'CycleB)
+  (Fput 'CycleB 'y 'defaut 42)
+  (assert (equal (Fget-I 'CycleA 'y 'defaut) '(42)))
+  (format t "✓ Test6: cycle AKO OK~%")
+
+  (initialize-frlc)
+  (Fcreate 'Objet 'PersistParent)
+  (Fcreate 'PersistParent 'PersistChild)
+  (Fput 'PersistParent 'p 'defaut "ok")
+  (Fput 'PersistChild 'c 'value 123)
+  (let ((tmp "frlc-test-save.dat"))
+    (ignore-errors (delete-file tmp))
+    (Fsave tmp)
+    (initialize-frlc)
+    (Flood tmp)
+    (assert (equal (Fget-I 'PersistChild 'p 'defaut) '("ok")))
+    (assert (equal (Fget 'PersistChild 'c 'value) '(123)))
+    (ignore-errors (delete-file tmp)))
+  (format t "✓ Test7: persistence OK~%")
+
   (format t "All tests passed.~%"))
 
 ;;; Fin tests.lisp

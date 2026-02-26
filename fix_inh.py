@@ -1,4 +1,4 @@
-;;; inheritance.lisp -- gestion de lheritage et recherches
+content = ''';;; inheritance.lisp -- gestion de lheritage et recherches
 (in-package :frlc)
 
 (defun parents-of (frame)
@@ -96,3 +96,7 @@ Retourne la premiere liste/valeur trouvee."
     (nreverse levels)))
 
 ;;; Fin inheritance.lisp
+'''
+with open('frlc-system/inheritance.lisp', 'w', encoding='utf-8') as f:
+    f.write(content)
+print('inheritance.lisp fixed')

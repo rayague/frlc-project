@@ -69,4 +69,4 @@
 
 Pour tester dans SBCL:
 
-sbcl --load frlc-core.lsp --load tests/test-frames.lsp
+sbcl --noinform --load frlc-system/frlc.lisp --eval "(in-package :frlc)" --eval "(initialize-frlc)" --eval "(load \"frlc-system/tests.lisp\")" --eval "(run-tests)" --quit

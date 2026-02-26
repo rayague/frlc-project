@@ -39,7 +39,7 @@ echo ✓ Système de démons (if-added, if-removed, if-needed)
 echo ✓ API complète: Fget, Fput, Fcreate, Finst, Fremove, etc.
 echo ✓ Recherches: Fget-I (profondeur), Fget-Z (largeur), Fget-N
 echo ✓ Prédicats: Frame?, Finstance?, Fgeneric?
-echo ✓ Persistance: save-frames, load-frames
+echo ✓ Persistance: Fsave, Flood
 echo ✓ Tests automatisés
 echo.
 echo TOUTES LES ERREURS DE SYNTAXE ONT ÉTÉ CORRIGÉES!

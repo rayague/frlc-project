@@ -1,5 +1,7 @@
 ;;; tests/test-frames.lsp -- tests unitaires minimaux
-(load "../frlc-core.lsp")
+(load "../frlc-system/frlc.lisp")
+(in-package :frlc)
+(initialize-frlc)
 
 (defun test-fput-fget ()
   (let ((n (Fcreate 'Objet 'Toto)))

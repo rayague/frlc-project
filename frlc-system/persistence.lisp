@@ -5,7 +5,7 @@
   "Retourne une alist serializable de tous les frames: ((name . frame-data) ...)." 
   (let ((out '()))
     (maphash (lambda (k v) (push (cons k v) out)) *frames-table*)
-    out)
+    out))
 
 (defun Fsave (filename)
   "Sérialise l'état des frames vers FILENAME." 
@@ -22,5 +22,3 @@
         (set-frame (car pair) (cdr pair))))))
 
 ;;; Fin persistence.lisp
-
-)
