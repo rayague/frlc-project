@@ -1,6 +1,9 @@
 ;;; core-functions.lisp -- fonctions de base FRLC
 (in-package :frlc)
 
+ (declaim (ftype (function (t) list) Fslots))
+ (declaim (ftype (function (t) list) inheritance-levels))
+
 (defun Fgename ()
   "Genere un nom unique de frame (symbole)."
   (incf *name-counter*)

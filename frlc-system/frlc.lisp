@@ -6,8 +6,8 @@
 ;; (définitions utilitaires et interfaces avant le noyau qui les utilise)
 (mapc (lambda (f) (load (format nil "frlc-system/~A" f)))
       '("globals.lisp" "data-structures.lisp" "utilities.lisp"
-        "core-functions.lisp" "interface.lisp" "inheritance.lisp"
-        "demons.lisp" "persistence.lisp" "tribal-world.lisp"))
+        "core-functions.lisp" "inheritance.lisp" "demons.lisp"
+        "persistence.lisp" "interface.lisp" "tribal-world.lisp"))
 
 (defun initialize-frlc ()
   "Initialise le système FRLC: vide tables, créé Objet, initialise variables." 

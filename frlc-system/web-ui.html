@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FRLC Web</title>
+  <style>
+    :root{--bg:#0b1020;--panel:#121a33;--panel2:#0f1630;--text:#e7eaf3;--muted:#a8b0c9;--accent:#6ee7ff;--accent2:#a78bfa;--ok:#34d399;--bad:#fb7185;}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Arial;background:radial-gradient(1200px 700px at 20% 0%, #1b2a6b 0%, var(--bg) 45%),radial-gradient(900px 600px at 100% 40%, #2b145d 0%, var(--bg) 55%);color:var(--text)}
+    header{padding:24px 20px;border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(10px);position:sticky;top:0;background:linear-gradient(to bottom, rgba(11,16,32,.85), rgba(11,16,32,.35))}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 10px 25px rgba(167,139,250,.25)}
+    .title{font-weight:800;letter-spacing:.4px}
+    .subtitle{color:var(--muted);font-size:13px;margin-top:2px}
+    main{padding:20px;max-width:1200px;margin:0 auto}
+    .grid{display:grid;grid-template-columns:360px 1fr;gap:16px}
+    .card{background:linear-gradient(180deg,rgba(18,26,51,.9),rgba(15,22,48,.9));border:1px solid rgba(255,255,255,.08);border-radius:16px;box-shadow:0 18px 50px rgba(0,0,0,.35);overflow:hidden}
+    .card h2{margin:0;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.08);font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:var(--muted)}
+    .section{padding:14px 16px}
+    .row{display:flex;gap:10px;align-items:center}
+    input,select,button,textarea{border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(10,14,30,.55);color:var(--text);padding:10px 12px;outline:none}
+    input:focus,textarea:focus{border-color:rgba(110,231,255,.45);box-shadow:0 0 0 4px rgba(110,231,255,.08)}
+    button{cursor:pointer;background:linear-gradient(135deg,rgba(110,231,255,.95),rgba(167,139,250,.95));border:none;color:#081022;font-weight:800}
+    button.secondary{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:var(--text);font-weight:650}
+    .list{max-height:520px;overflow:auto;padding:6px}
+    .item{padding:10px 10px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .item:hover{background:rgba(255,255,255,.06)}
+    .badge{font-size:12px;padding:3px 10px;border-radius:999px;background:rgba(110,231,255,.10);border:1px solid rgba(110,231,255,.22);color:var(--accent)}
+    .muted{color:var(--muted)}
+    pre{margin:0;padding:14px 16px;max-height:520px;overflow:auto;background:rgba(7,10,22,.55);border-top:1px solid rgba(255,255,255,.08)}
+    .toast{margin-top:10px;font-size:13px;color:var(--muted)}
+    .ok{color:var(--ok)}
+    .bad{color:var(--bad)}
+    @media (max-width:980px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="logo"></div>
+    <div>
+      <div class="title">FRLC Web</div>
+      <div class="subtitle">Gestion des frames en local (SBCL) - API JSON</div>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="grid">
+    <div class="card">
+      <h2>Frames</h2>
+      <div class="section row">
+        <button id="refresh" class="secondary">Rafraîchir</button>
+        <span class="muted" id="count"></span>
+      </div>
+      <div class="list" id="frames"></div>
+    </div>
+    <div class="card">
+      <h2>Édition</h2>
+      <div class="section">
+        <div class="row">
+          <input id="frameName" placeholder="Frame (ex: JEAN)" style="flex:1" />
+          <button id="load" class="secondary">Charger</button>
+        </div>
+        <div style="height:12px"></div>
+        <div class="row">
+          <input id="slot" placeholder="slot (ex: nom)" style="flex:1" />
+          <input id="facet" placeholder="facet (value/defaut)" style="width:180px" />
+        </div>
+        <div style="height:10px"></div>
+        <textarea id="value" placeholder="value (ex: &quot;Dupont&quot; ou symbole ou liste)" rows="3" style="width:100%"></textarea>
+        <div style="height:10px"></div>
+        <div class="row">
+          <button id="put">Fput</button>
+          <button id="putPlus" class="secondary">Fput+</button>
+          <button id="create" class="secondary">Fcreate</button>
+        </div>
+        <div class="toast" id="toast"></div>
+      </div>
+      <pre id="preview" class="muted">Sélectionne un frame…</pre>
+    </div>
+  </div>
+</main>
+<script>
+  const $ = (id)=>document.getElementById(id);
+  function toast(msg, ok=true){
+    $('toast').innerHTML = '<span class="'+(ok?'ok':'bad')+'">'+msg+'</span>';
+  }
+  async function api(path){
+    const r = await fetch(path);
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    return await r.json();
+  }
+  async function refresh(){
+    const data = await api('/api/frames');
+    $('count').textContent = data.frames.length+' frame(s)';
+    const box = $('frames');
+    box.innerHTML='';
+    data.frames.forEach(f=>{
+      const div=document.createElement('div');
+      div.className='item';
+      div.innerHTML = '<div style="font-weight:700">'+f.name+'</div><div class="badge">'+(f.classification||'')+'</div>';
+      div.onclick=()=>{ $('frameName').value=f.name; loadFrame(); };
+      box.appendChild(div);
+    });
+  }
+  function encode(s){ return encodeURIComponent(s); }
+  async function loadFrame(){
+    const name=$('frameName').value.trim();
+    if(!name){toast('Nom de frame requis', false);return;}
+    const data = await api('/api/frame?name='+encode(name));
+    if(data.error){ $('preview').textContent='Not found'; toast('Frame introuvable', false); return; }
+    $('preview').textContent = JSON.stringify(data.data, null, 2);
+    toast('Chargé: '+name, true);
+  }
+  async function doPut(plus){
+    const frame=$('frameName').value.trim();
+    const slot=$('slot').value.trim();
+    const facet=$('facet').value.trim();
+    const value=$('value').value.trim();
+    if(!frame||!slot||!facet){toast('frame/slot/facet requis', false);return;}
+    const data = await api('/api/'+(plus?'putplus':'put')+'?frame='+encode(frame)+'&slot='+encode(slot)+'&facet='+encode(facet)+'&value='+encode(value));
+    if(data.ok){toast('OK', true); await refresh(); await loadFrame();}
+    else toast('Erreur: '+(data.error||'unknown'), false);
+  }
+  async function doCreate(){
+    const name=$('frameName').value.trim();
+    const parent=prompt('Parent (symbole) ? Exemple: Personne');
+    if(!name){toast('Nom requis', false);return;}
+    const data = await api('/api/create?parent='+encode(parent||'')+'&name='+encode(name));
+    if(data.ok){toast('Frame créé', true); await refresh(); await loadFrame();}
+    else toast('Erreur: '+(data.error||'unknown'), false);
+  }
+  $('refresh').onclick=refresh;
+  $('load').onclick=loadFrame;
+  $('put').onclick=()=>doPut(false);
+  $('putPlus').onclick=()=>doPut(true);
+  $('create').onclick=doCreate;
+  refresh().catch(e=>toast(e.message,false));
+</script>
+</body>
+</html>

@@ -1,6 +1,28 @@
 ;;; interface.lisp -- affichage et fonctions d'interface
 (in-package :frlc)
 
+ (defun Frame? (name)
+  "Verifie si NAME est un frame existant."
+  (not (null (get-frame name))))
+
+ (defun Fname? (name)
+  "Verifie si NAME a un nom de frame valide et existe."
+  (and (symbolp name) (Frame? name) name))
+
+ (defun Finstance? (frame)
+  "Verifie si FRAME est une instance."
+  (equal (first (Fget frame 'CLASSIFICATION 'value)) 'instance))
+
+ (defun Fgeneric? (frame)
+  "Verifie si FRAME est un prototype."
+  (equal (first (Fget frame 'CLASSIFICATION 'value)) 'prototype))
+
+ (defun Fwriteframe (frame &optional stream)
+  "Ecrit la structure du FRAME sur STREAM (par defaut *standard-output*)."
+  (declare (ignore stream))
+  (with-output-to-string (s)
+    (pprint (get-frame frame) s)))
+
 (defun Fslots (frame)
   "Retourne la liste des slots definis pour FRAME."
   (let ((f (get-frame frame)))
@@ -186,7 +208,10 @@ Si FRAMES-LIST est nil, exporte tous les frames."
           (3 (Fmenu-display-frame))
           (4 (Fmenu-list-frames))
           (5 (Fmenu-search-inheritance))
-          (6 (run-tests))
+          (6 (let ((sym 'run-tests))
+               (if (fboundp sym)
+                   (funcall (symbol-function sym))
+                   (format t "Tests non disponibles (charger frlc-system/tests.lisp).~%"))))
           (7 (progn
                (format t "Nom du fichier: ")
                (finish-output)
@@ -197,21 +222,5 @@ Si FRAMES-LIST est nil, exporte tous les frames."
                (finish-output)
                (Flood (read-line))
                (format t "Chargement effectue.~%"))))))))
-
-(defun Frame? (name)
-  "Verifie si NAME est un frame existant."
-  (not (null (get-frame name))))
-
-(defun Fname? (name)
-  "Verifie si NAME a un nom de frame valide et existe."
-  (and (symbolp name) (Frame? name) name))
-
-(defun Finstance? (frame)
-  "Verifie si FRAME est une instance."
-  (equal (first (Fget frame 'CLASSIFICATION 'value)) 'instance))
-
-(defun Fgeneric? (frame)
-  "Verifie si FRAME est un prototype."
-  (equal (first (Fget frame 'CLASSIFICATION 'value)) 'prototype))
 
 ;;; Fin interface.lisp
