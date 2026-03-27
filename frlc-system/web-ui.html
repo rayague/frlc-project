@@ -75,6 +75,11 @@
           <button id="putPlus" class="secondary">Fput+</button>
           <button id="create" class="secondary">Fcreate</button>
         </div>
+        <div style="height:10px"></div>
+        <div class="row">
+          <button id="remove" style="background:linear-gradient(135deg,#fb7185,#f43f5e)">Fremove</button>
+          <button id="removePlus" class="secondary" style="border-color:rgba(251,113,133,.5);color:#fb7185">Fremove+</button>
+        </div>
         <div class="toast" id="toast"></div>
       </div>
       <pre id="preview" class="muted">Sélectionne un frame…</pre>
@@ -131,11 +136,22 @@
     if(data.ok){toast('Frame créé', true); await refresh(); await loadFrame();}
     else toast('Erreur: '+(data.error||'unknown'), false);
   }
-  $('refresh').onclick=refresh;
+  async function doRemove(plus){
+    const frame=$('frameName').value.trim();
+    const slot=$('slot').value.trim();
+    const facet=$('facet').value.trim();
+    const value=$('value').value.trim();
+    if(!frame||!slot||!facet){toast('frame/slot/facet requis', false);return;}
+    const data = await api('/api/'+(plus?'removeplus':'remove')+'?frame='+encode(frame)+'&slot='+encode(slot)+'&facet='+encode(facet)+'&value='+encode(value));
+    if(data.ok){toast('Valeur supprimée', true); await refresh(); await loadFrame();}
+    else toast('Erreur: '+(data.error||'unknown'), false);
+  }
   $('load').onclick=loadFrame;
   $('put').onclick=()=>doPut(false);
   $('putPlus').onclick=()=>doPut(true);
   $('create').onclick=doCreate;
+  $('remove').onclick=()=>doRemove(false);
+  $('removePlus').onclick=()=>doRemove(true);
   refresh().catch(e=>toast(e.message,false));
 </script>
 </body>

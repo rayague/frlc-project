@@ -200,6 +200,29 @@
                (%http-response-bytes stream "400 Bad Request" "application/json; charset=utf-8"
                                     (%string->utf8-octets (format nil "{\"ok\":false,\"error\":~A}" (%json-string (princ-to-string e)))))))
            (%http-response-bytes stream "400 Bad Request" "application/json; charset=utf-8" (%string->utf8-octets "{\"ok\":false,\"error\":\"missing_params\"}")))))
+    ((or (%starts-with path "/api/remove") (%starts-with path "/api/removeplus"))
+     (let* ((is-plus (%starts-with path "/api/removeplus"))
+            (query (%parse-query path))
+            (f (cdr (assoc "frame" query :test #'string=)))
+            (s (cdr (assoc "slot" query :test #'string=)))
+            (fac (cdr (assoc "facet" query :test #'string=)))
+            (v (cdr (assoc "value" query :test #'string=))))
+       (if (and f s fac)
+           (handler-case
+               (let* ((frame (intern (string-upcase f) :cl-user))
+                      (slot (intern (string-upcase s) :cl-user))
+                      (facet (intern (string-upcase fac) :cl-user))
+                      (value (if (and v (> (length v) 0))
+                                 (read-from-string v)
+                                 nil)))
+                 (if is-plus
+                     (Fremove+ frame slot facet value)
+                     (Fremove frame slot facet value))
+                 (%http-response-bytes stream "200 OK" "application/json; charset=utf-8" (%string->utf8-octets "{\"ok\":true}")))
+             (error (e)
+               (%http-response-bytes stream "400 Bad Request" "application/json; charset=utf-8"
+                                    (%string->utf8-octets (format nil "{\"ok\":false,\"error\":~A}" (%json-string (princ-to-string e)))))))
+           (%http-response-bytes stream "400 Bad Request" "application/json; charset=utf-8" (%string->utf8-octets "{\"ok\":false,\"error\":\"missing_params\"}")))))
     (t (%http-response-bytes stream "404 Not Found" "application/json; charset=utf-8" (%string->utf8-octets "{\"error\":\"not_found\"}")))))
 
 (defun %handle-connection (socket)
