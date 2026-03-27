@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" style="background:#0b1020">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#121a33;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f1630;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6ee7ff;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#a78bfa;stop-opacity:0.95" />
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fb7185;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#f43f5e;stop-opacity:0.95" />
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#6ee7ff" opacity="0.7"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="500" y="30" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="18" font-weight="bold">Architecture FRLC - Flux de données</text>
+  
+  <!-- Frontend Box -->
+  <rect x="20" y="60" width="220" height="280" rx="12" fill="url(#grad1)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+  <text x="130" y="85" text-anchor="middle" fill="#6ee7ff" font-family="Segoe UI, Arial" font-size="14" font-weight="bold">FRONTEND (Navigateur)</text>
+  <text x="130" y="105" text-anchor="middle" fill="#a8b0c9" font-family="Segoe UI, Arial" font-size="11">frlc-system/web-ui.html</text>
+  
+  <!-- Frontend Elements -->
+  <rect x="35" y="120" width="190" height="35" rx="8" fill="rgba(10,14,30,0.8)" stroke="rgba(110,231,255,0.3)" stroke-width="1"/>
+  <text x="130" y="142" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="12">Liste des Frames</text>
+  
+  <rect x="35" y="165" width="190" height="35" rx="8" fill="rgba(10,14,30,0.8)" stroke="rgba(110,231,255,0.3)" stroke-width="1"/>
+  <text x="130" y="187" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="12">Formulaire d'édition</text>
+  
+  <rect x="35" y="210" width="190" height="35" rx="8" fill="rgba(10,14,30,0.8)" stroke="rgba(110,231,255,0.3)" stroke-width="1"/>
+  <text x="130" y="232" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="12">Boutons d'action</text>
+  
+  <rect x="35" y="255" width="190" height="35" rx="8" fill="rgba(10,14,30,0.8)" stroke="rgba(110,231,255,0.3)" stroke-width="1"/>
+  <text x="130" y="277" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="12">JavaScript (fetch API)</text>
+  
+  <!-- Arrow Frontend to Server -->
+  <line x1="240" y1="180" x2="340" y2="180" stroke="#6ee7ff" stroke-width="2" marker-end="url(#arrow)" opacity="0.7"/>
+  <text x="290" y="170" text-anchor="middle" fill="#a8b0c9" font-family="Segoe UI, Arial" font-size="10">HTTP GET</text>
+  
+  <!-- Backend Server Box -->
+  <rect x="340" y="60" width="280" height="280" rx="12" fill="url(#grad1)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+  <text x="480" y="85" text-anchor="middle" fill="#a78bfa" font-family="Segoe UI, Arial" font-size="14" font-weight="bold">SERVEUR HTTP (SBCL)</text>
+  <text x="480" y="105" text-anchor="middle" fill="#a8b0c9" font-family="Segoe UI, Arial" font-size="11">frlc-system/web.lisp</text>
+  
+  <!-- Server Elements -->
+  <rect x="355" y="120" width="250" height="30" rx="8" fill="rgba(10,14,30,0.8)" stroke="rgba(167,139,250,0.3)" stroke-width="1"/>
+  <text x="480" y="140" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="11">sb-bsd-sockets (port 8080)</text>
+  
+  <rect x="355" y="160" width="250" height="30" rx="8" fill="rgba(10,14,30,0.8)" stroke="rgba(167,139,250,0.3)" stroke-width="1"/>
+  <text x="480" y="180" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="11">Gestion connexions TCP</text>
+  
+  <rect x="355" y="200" width="250" height="30" rx="8" fill="rgba(10,14,30,0.8)" stroke="rgba(167,139,250,0.3)" stroke-width="1"/>
+  <text x="480" y="220" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="11">Routing API (/api/*)</text>
+  
+  <rect x="355" y="240" width="250" height="30" rx="8" fill="rgba(10,14,30,0.8)" stroke="rgba(167,139,250,0.3)" stroke-width="1"/>
+  <text x="480" y="260" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="11">Sérialisation JSON</text>
+  
+  <rect x="355" y="280" width="250" height="30" rx="8" fill="rgba(10,14,30,0.8)" stroke="rgba(167,139,250,0.3)" stroke-width="1"/>
+  <text x="480" y="300" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="11">Réponses HTTP UTF-8</text>
+  
+  <!-- Arrow Server to Core -->
+  <line x1="620" y1="180" x2="700" y2="180" stroke="#a78bfa" stroke-width="2" marker-end="url(#arrow)" opacity="0.7"/>
+  <text x="660" y="170" text-anchor="middle" fill="#a8b0c9" font-family="Segoe UI, Arial" font-size="10">Appels fonctions</text>
+  
+  <!-- Core System Box -->
+  <rect x="700" y="60" width="280" height="280" rx="12" fill="url(#grad1)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+  <text x="840" y="85" text-anchor="middle" fill="#34d399" font-family="Segoe UI, Arial" font-size="14" font-weight="bold">SYSTÈME FRLC (Core)</text>
+  <text x="840" y="105" text-anchor="middle" fill="#a8b0c9" font-family="Segoe UI, Arial" font-size="11">frlc-system/*.lisp</text>
+  
+  <!-- Core Elements -->
+  <rect x="715" y="120" width="250" height="25" rx="6" fill="rgba(10,14,30,0.8)" stroke="rgba(52,211,153,0.3)" stroke-width="1"/>
+  <text x="840" y="137" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="10">core-functions.lisp (Fput, Fremove, Fcreate)</text>
+  
+  <rect x="715" y="155" width="250" height="25" rx="6" fill="rgba(10,14,30,0.8)" stroke="rgba(52,211,153,0.3)" stroke-width="1"/>
+  <text x="840" y="172" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="10">inheritance.lisp (Fget-I, Fget-N)</text>
+  
+  <rect x="715" y="190" width="250" height="25" rx="6" fill="rgba(10,14,30,0.8)" stroke="rgba(52,211,153,0.3)" stroke-width="1"/>
+  <text x="840" y="207" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="10">demons.lisp (if-added, if-removed)</text>
+  
+  <rect x="715" y="225" width="250" height="25" rx="6" fill="rgba(10,14,30,0.8)" stroke="rgba(52,211,153,0.3)" stroke-width="1"/>
+  <text x="840" y="242" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="10">persistence.lisp (Fsave, Flood)</text>
+  
+  <rect x="715" y="260" width="250" height="25" rx="6" fill="rgba(10,14,30,0.8)" stroke="rgba(52,211,153,0.3)" stroke-width="1"/>
+  <text x="840" y="277" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="10">globals.lisp (*frames-table*)</text>
+  
+  <!-- Data Storage Box -->
+  <rect x="750" y="380" width="180" height="100" rx="12" fill="rgba(7,10,22,0.9)" stroke="rgba(251,113,133,0.4)" stroke-width="2"/>
+  <text x="840" y="405" text-anchor="middle" fill="#fb7185" font-family="Segoe UI, Arial" font-size="12" font-weight="bold">STOCKAGE</text>
+  <text x="840" y="425" text-anchor="middle" fill="#a8b0c9" font-family="Segoe UI, Arial" font-size="10">*frames-table* (hash-table)</text>
+  <text x="840" y="445" text-anchor="middle" fill="#a8b0c9" font-family="Segoe UI, Arial" font-size="10">Structure: Alist de slots</text>
+  <text x="840" y="465" text-anchor="middle" fill="#a8b0c9" font-family="Segoe UI, Arial" font-size="10">Chaque slot → facettes</text>
+  
+  <!-- Arrow Core to Storage -->
+  <line x1="840" y1="340" x2="840" y2="380" stroke="#fb7185" stroke-width="2" marker-end="url(#arrow)" opacity="0.7"/>
+  <text x="870" y="365" text-anchor="start" fill="#a8b0c9" font-family="Segoe UI, Arial" font-size="10">Lecture/Écriture</text>
+  
+  <!-- API Endpoints Detail -->
+  <rect x="340" y="380" width="380" height="150" rx="12" fill="url(#grad1)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+  <text x="530" y="405" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="12" font-weight="bold">ENDPOINTS API DISPONIBLES</text>
+  
+  <rect x="355" y="420" width="170" height="25" rx="6" fill="rgba(10,14,30,0.8)" stroke="rgba(110,231,255,0.3)" stroke-width="1"/>
+  <text x="440" y="437" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="10">GET /api/frames</text>
+  
+  <rect x="355" y="450" width="170" height="25" rx="6" fill="rgba(10,14,30,0.8)" stroke="rgba(110,231,255,0.3)" stroke-width="1"/>
+  <text x="440" y="467" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="10">GET /api/frame?name=X</text>
+  
+  <rect x="355" y="480" width="170" height="25" rx="6" fill="rgba(10,14,30,0.8)" stroke="rgba(110,231,255,0.3)" stroke-width="1"/>
+  <text x="440" y="497" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="10">GET /api/create?parent=X&amp;name=Y</text>
+  
+  <rect x="535" y="420" width="170" height="25" rx="6" fill="rgba(10,14,30,0.8)" stroke="rgba(110,231,255,0.3)" stroke-width="1"/>
+  <text x="620" y="437" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="10">GET /api/put|putplus...</text>
+  
+  <rect x="535" y="450" width="170" height="25" rx="6" fill="rgba(10,14,30,0.8)" stroke="rgba(110,231,255,0.3)" stroke-width="1"/>
+  <text x="620" y="467" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="10">GET /api/remove|removeplus...</text>
+  
+  <!-- Entry Points -->
+  <rect x="20" y="380" width="300" height="150" rx="12" fill="url(#grad1)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+  <text x="170" y="405" text-anchor="middle" fill="#e7eaf3" font-family="Segoe UI, Arial" font-size="12" font-weight="bold">POINTS D'ENTRÉE</text>
+  
+  <rect x="35" y="420" width="270" height="25" rx="6" fill="rgba(10,14,30,0.8)" stroke="rgba(52,211,153,0.3)" stroke-width="1"/>
+  <text x="170" y="437" text-anchor="middle" fill="#34d399" font-family="Segoe UI, Arial" font-size="10">run-web.bat → Interface Web (port 8080)</text>
+  
+  <rect x="35" y="450" width="270" height="25" rx="6" fill="rgba(10,14,30,0.8)" stroke="rgba(52,211,153,0.3)" stroke-width="1"/>
+  <text x="170" y="467" text-anchor="middle" fill="#34d399" font-family="Segoe UI, Arial" font-size="10">test.bat → Tests unitaires</text>
+  
+  <rect x="35" y="480" width="270" height="25" rx="6" fill="rgba(10,14,30,0.8)" stroke="rgba(52,211,153,0.3)" stroke-width="1"/>
+  <text x="170" y="497" text-anchor="middle" fill="#34d399" font-family="Segoe UI, Arial" font-size="10">tribal-demo.bat → Démonstration complète</text>
+  
+  <!-- Frame Structure Example -->
+  <rect x="20" y="560" width="460" height="120" rx="12" fill="rgba(7,10,22,0.9)" stroke="rgba(251,113,133,0.3)" stroke-width="1"/>
+  <text x="250" y="585" text-anchor="middle" fill="#fb7185" font-family="Segoe UI, Arial" font-size="12" font-weight="bold">EXEMPLE DE STRUCTURE INTERNE - Frame JEAN</text>
+  
+  <text x="35" y="610" fill="#a8b0c9" font-family="Consolas, monospace" font-size="9">((NOM (VALUE "Jean Dupont"))</text>
+  <text x="35" y="630" fill="#a8b0c9" font-family="Consolas, monospace" font-size="9"> (AGE (VALUE 25) (DEFAULT 0))</text>
+  <text x="35" y="650" fill="#a8b0c9" font-family="Consolas, monospace" font-size="9"> (AKO (VALUE PERSONNE))</text>
+  <text x="35" y="670" fill="#a8b0c9" font-family="Consolas, monospace" font-size="9"> (CLASSIFICATION (VALUE INSTANCE)))</text>
+  
+  <!-- Data Flow -->
+  <rect x="500" y="560" width="460" height="120" rx="12" fill="rgba(7,10,22,0.9)" stroke="rgba(110,231,255,0.3)" stroke-width="1"/>
+  <text x="730" y="585" text-anchor="middle" fill="#6ee7ff" font-family="Segoe UI, Arial" font-size="12" font-weight="bold">FLUX DE DONNÉES - Création d'une valeur</text>
+  
+  <text x="515" y="610" fill="#a8b0c9" font-family="Segoe UI, Arial" font-size="9">1. Formulaire → JavaScript encode les paramètres</text>
+  <text x="515" y="630" fill="#a8b0c9" font-family="Segoe UI, Arial" font-size="9">2. Fetch HTTP GET /api/put?frame=X&amp;slot=Y...</text>
+  <text x="515" y="650" fill="#a8b0c9" font-family="Segoe UI, Arial" font-size="9">3. web.lisp parse la query et appelle (Fput frame slot facet value)</text>
+  <text x="515" y="670" fill="#a8b0c9" font-family="Segoe UI, Arial" font-size="9">4. Fput modifie *frames-table* et retourne succès → JSON</text>
+  
+</svg>
